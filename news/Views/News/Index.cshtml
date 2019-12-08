@@ -1,0 +1,73 @@
+﻿@model IEnumerable<news.Models.Newsletter>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="Latest">
+
+    <h2>News</h2>
+
+    @if (!Model.Any())
+    {
+        <p>We don't have any Articles yet.</p>
+    }
+    else
+    {
+        @*
+             <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Article</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var article in Model)
+                    {
+                        <tr>
+                            <td></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        *@
+        <div class="d-lg-flex justify-content-center col-lg-12 container flex-wrap">
+            @foreach (var article in Model.Take(4))
+            {
+                <div class="card mb-3 border-primary" style="max-width: 400px; margin: 5px; height: 150px;">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src=@article.Img_link class="card-img img11" alt=@article.Title>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">@Html.ActionLink(article.Title, "Details", "News", new { id = article.Id }, null)</h5>
+                                @if (@article.Author != null)
+                                {
+                                    <p class="card-text text-muted">@article.Author</p>
+                                }
+                                @if (@article.Date != null)
+                                {
+                                    <p class="card-text"><small class="text-muted">@article.Date</small></p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+
+    }
+    <div class="btn-toolbar d-flex justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+            @for (int i = 0; i < ((Model.Count() +3) / 4); i++)
+            {
+                string x = (i + 1).ToString();
+                @Html.ActionLink( x , "Index", "News", new { page = i }, new { @class = "btn btn-secondary", style = "margin: 0 3px;" })
+            }
+        </div>
+    </div>
+
+</div>

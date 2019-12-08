@@ -1,21 +1,46 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    min-height: 100vh;
+    background: url("https://chelgate.com/app/uploads/2016/10/travel_planning-wallpaper-1920x1080.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
 }
-
+footer {
+text-align: center;
+padding: 10px;
+color: #FFF;
+}
+footer *{
+    margin: 0;
+}
+.Latest {
+    background: linear-gradient(rgba(44, 62, 80, 0.5),rgba(44, 62, 80, 0.5));
+    border: 4px solid #2c3e50;
+    padding: 30px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
 }
-
+.img11 {
+    height: 148px;
+}
+.img55 {
+    height: 60%;
+    width: 100%;
+}
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
 .dl-horizontal dt {
     white-space: normal;
 }
-
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,

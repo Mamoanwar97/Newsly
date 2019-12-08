@@ -1,31 +1,99 @@
-﻿@{
+﻿@model IEnumerable<news.Models.Newsletter>
+
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="margin: 20px 0;">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item item active">
+            <img class="d-block w-100" style="height: 80vh !important;" src="https://cdn.pixabay.com/photo/2015/07/27/17/14/switzerland-862870_1280.jpg" alt="First slide">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Slide 1</h5>
+                <p>this is the first slide</p>
+            </div>
+        </div>
+        <div class="carousel-item item">
+            <img class="d-block w-100" style="height: 80vh !important;" src="https://cdn.pixabay.com/photo/2016/08/11/23/48/italy-1587287_1280.jpg" alt="Second slide">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Slide 2</h5>
+                <p>this is the Second slide</p>
+            </div>
+        </div>
+        <div class="carousel-item item">
+            <img class="d-block w-100 " style="height: 80vh !important;" src="https://cdn.pixabay.com/photo/2015/07/27/17/14/switzerland-862870_1280.jpg" alt="Third slide">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Slide 3</h5>
+                <p>this is the third slide</p>
+            </div>
+        </div>
+        <div class="carousel-item item">
+            <img class="d-block w-100 " style="height: 80vh !important;" src="https://cdn.pixabay.com/photo/2014/03/03/16/12/cinque-terre-279013_1280.jpg" alt="Fourth slide">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Slide 4</h5>
+                <p>this is the fourth slide</p>
+            </div>
+        </div>
+        <div class="carousel-item item">
+            <img class="d-block w-100 " style="height: 80vh !important;" src="https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832_1280.jpg" alt="Fifth slide">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Slide 5</h5>
+                <p>this is the fifth slide</p>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+<div class="Latest">
+    <h2>Lastest News</h2>
+
+    @if (!Model.Any())
+    {
+        <p>We don't have any Articles yet.</p>
+    }
+    else
+    {
+        <div class="d-lg-flex justify-content-around col-lg-12 container flex-wrap">
+            @foreach (var article in Model.Reverse().Take(5))
+            {
+                <div class="card  mb-3 col-lg-3 border-primary" style="margin:4px;">
+                    <img src=@article.Img_link class="card-img img55" alt=@article.Title>
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.ActionLink(article.Title, "Details", "News", new { id = article.Id }, null)</h5>
+                        @if (@article.Author != null)
+                    {
+                            <p class="card-text text-muted">@article.Author</p>
+                        }
+                    </div>
+                    <div class="card-footer">
+                        @if (@article.Date != null)
+                    {
+                            <p class="card-text"><small class="text-muted">@article.Date</small></p>
+                        }
+                        else
+                        {
+                        < br />
+                        }
+                    </div>
+                </div>
+
+            }
+        </div>
+
+    }
 </div>
