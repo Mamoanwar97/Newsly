@@ -113,7 +113,6 @@ body {
     height: 148px;
 }
 .wrapper{
-    //background: #2e2e2e;
     border-radius: 10px;
     margin-top:10px;
     padding: 10px;
@@ -140,6 +139,11 @@ background: #2E2E2E;
 text-align: center;
 padding: 20px;
 color: #FFF;
+
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+        box-shadow: 4px 11px 26px #000029;
+
 }
 footer *{
     color: #fff;
