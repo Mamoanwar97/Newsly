@@ -39,11 +39,16 @@ namespace news.Controllers
 
             return View();
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Subscribe(Subscriber person)
         {
+            if(!ModelState.IsValid)
+                return RedirectToAction("Index", "Home");
+
             _context.Subscribers.Add(person);
             _context.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "News");
         }
     }
 }

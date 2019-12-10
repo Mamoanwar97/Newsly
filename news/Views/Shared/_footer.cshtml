@@ -1,6 +1,6 @@
-﻿@*model news.Models.Subscriber*@
+﻿@model news.Models.Subscriber
 
-<footer class="d-flex flex-wrap justify-content-around" >
+<footer class="d-flex flex-wrap justify-content-around">
     <div>
         <h1>newsly</h1>
         <div class="d-flex justify-content-sm-around">
@@ -20,16 +20,16 @@
         <a href="tel:+2010-0964-9613">0100 964 9613</a>
     </div>
     <div>
-        <label for="email" style="display: block;">Stay Updated</label>
-         <input class = "subscribe" placeholder = "Email address" type = "email" />
-        <button type="submit" class="btn footer-btn">Subscribe</button>
-@*
-    @using (@Html.BeginForm("Subscribe", "Home"))
-    {
-        <label for="email" style="display: block;">Stay Updated</label>
-        @Html.TextBoxFor(n => n.email, new { @class = "subscribe", placeholder = "Email address", type = "email" })
-        <button type="submit" class="btn footer-btn">Subscribe</button>
+        @using (@Html.BeginForm("Subscribe", "Home"))
+        {
+            <label for="email" style="display: block;">Stay Updated</label>
 
-    }
-*@   </div>
+            @Html.TextBoxFor(n => n.email, new { @class = "subscribe", placeholder = "Email address", type = "email" })
+            @Html.HiddenFor(n => n.Id)
+            @Html.AntiForgeryToken() <!-- Security Token -->
+
+            <button type="submit" class="btn footer-btn">Subscribe</button>
+
+        }
+    </div>
 </footer>

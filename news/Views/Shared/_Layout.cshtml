@@ -20,11 +20,14 @@
 
 
     </div>
-
-    @Html.Partial("_footer")
+    @{
+        news.Models.Subscriber ctry1 = new news.Models.Subscriber();
+        Html.RenderPartial("_footer", ctry1);
+    }
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>
+news.Models.Subscriber

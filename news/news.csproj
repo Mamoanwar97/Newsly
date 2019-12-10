@@ -239,6 +239,18 @@
     <Compile Include="Migrations\201912101450522_subscribe.Designer.cs">
       <DependentUpon>201912101450522_subscribe.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912101520507_subscribe1.cs" />
+    <Compile Include="Migrations\201912101520507_subscribe1.Designer.cs">
+      <DependentUpon>201912101520507_subscribe1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912101538498_subscribesss.cs" />
+    <Compile Include="Migrations\201912101538498_subscribesss.Designer.cs">
+      <DependentUpon>201912101538498_subscribesss.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912101543071_subscribe-requried.cs" />
+    <Compile Include="Migrations\201912101543071_subscribe-requried.Designer.cs">
+      <DependentUpon>201912101543071_subscribe-requried.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -374,6 +386,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912101450522_subscribe.resx">
       <DependentUpon>201912101450522_subscribe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912101520507_subscribe1.resx">
+      <DependentUpon>201912101520507_subscribe1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912101538498_subscribesss.resx">
+      <DependentUpon>201912101538498_subscribesss.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912101543071_subscribe-requried.resx">
+      <DependentUpon>201912101543071_subscribe-requried.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
