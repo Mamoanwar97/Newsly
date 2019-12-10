@@ -1,4 +1,4 @@
-﻿@model IEnumerable<news.Models.Newsletter>
+﻿@model news.Models.newsPage
 
 @{
     ViewBag.Title = "Index";
@@ -9,13 +9,16 @@
 
     <h2>News</h2>
 
-    @if (!Model.Any())
+    @Html.ActionLink("Add News", "NewNews", "News", null, new { @class = "btn btn-primary" })
+
+    @if (!Model.letters.Any())
     {
         <p>We don't have any Articles yet.</p>
     }
     else
     {
         @*
+            <!--INCASE OF NEED TO CHANGE THE NEWS LIST TO TABLE -->
              <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
@@ -33,7 +36,7 @@
             </table>
         *@
         <div class="d-lg-flex justify-content-center col-lg-12 container flex-wrap">
-            @foreach (var article in Model.Take(4))
+            @foreach (var article in Model.letters.Reverse().Skip(4 * Model.current).Take(4))
             {
                 <div class="card mb-3 border-primary" style="max-width: 400px; margin: 5px; height: 150px;">
                     <div class="row no-gutters">
@@ -42,7 +45,7 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title">@Html.ActionLink(article.Title, "Details", "News", new { id = article.Id }, null)</h5>
+                                <h5 class="card-title">@Html.ActionLink(article.Title, "Edit", "News", new { id = article.Id }, null)</h5>
                                 @if (@article.Author != null)
                                 {
                                     <p class="card-text text-muted">@article.Author</p>
@@ -60,12 +63,26 @@
         </div>
 
     }
+
     <div class="btn-toolbar d-flex justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
-        <div class="btn-group mr-2" role="group" aria-label="First group">
-            @for (int i = 0; i < ((Model.Count() +3) / 4); i++)
+        <div class="btn-group mr-2" role="group" aria-label="First group"> <!--Page buttons next disappears when it reaches the last page, previous disappers in the first page-->
+            @if ((Model.current > 0) && (Model.current < ((Model.letters.Count() + 3) / 4)))
             {
-                string x = (i + 1).ToString();
-                @Html.ActionLink( x , "Index", "News", new { page = i }, new { @class = "btn btn-secondary", style = "margin: 0 3px;" })
+                @Html.ActionLink("Pervious", "Index", "News", new { page = Model.current - 1 }, new { @class = "btn btn-secondary paging-btn", style = "margin: 0 3px;" })
+            }
+            else
+            {
+                @Html.ActionLink("Pervious", "Index", "News", new { page = Model.current}, new { @class = "btn btn-secondary paging-btn", style = "margin: 0 3px; visibility: hidden;" })
+            }
+            <label class="btn btn-primary paging-btn">@(Model.current + 1)</label>
+
+            @if ((Model.current >= 0) && (Model.current < ((Model.letters.Count() + 3) / 4) - 1))
+            {
+                @Html.ActionLink("Next", "Index", "News", new { page = Model.current + 1 }, new { @class = "btn btn-secondary paging-btn", style = "margin: 0 3px;" })
+            }
+            else
+            {
+                @Html.ActionLink("Next", "Index", "News", new { page = Model.current }, new { @class = "btn btn-secondary paging-btn", style = "margin: 0 3px; visibility: hidden;" })
             }
         </div>
     </div>

@@ -1,0 +1,50 @@
+﻿@model  news.Models.newsForm
+@{
+    ViewBag.Title = "NewNews";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- NEWS EDITING MOOD ADD OR EDIT A PERVIOUS NEWS-->
+
+<div class="Latest"> <!-- Latest class just to make a visble container should be removed in the real design -->
+
+    <h2> @Model.condition </h2>
+
+    @using (@Html.BeginForm("SaveNews", "News"))
+    {
+        <div class="form-group">
+            @Html.LabelFor(n => n.Title)
+            @Html.TextBoxFor(n => n.Title, new { @class = "form-control" })
+            @Html.ValidationMessageFor(n => n.Title)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(n => n.Author)
+            @Html.TextBoxFor(n => n.Author, new { @class = "form-control" })
+            @Html.ValidationMessageFor(n => n.Author)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(n => n.Description)
+            @Html.TextBoxFor(n => n.Description, new { @class = "form-control" })
+            @Html.ValidationMessageFor(n => n.Description)
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(n => n.Img_link)
+            @Html.TextBoxFor(n => n.Img_link, new { @class = "form-control" })
+        </div>
+
+        @Html.HiddenFor(n => n.Date) <!-- Update the date of adding/editing -->
+        @Html.HiddenFor(n => n.Id)
+        @Html.AntiForgeryToken() <!-- Security Token -->
+
+        <button class="btn btn-primary paging-btn" type="submit">SAVE</button>
+    }
+
+</div>
+@section scripts{
+
+    @Scripts.Render("~/bundles/jqueryval")
+}

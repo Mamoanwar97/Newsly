@@ -1,40 +1,6 @@
-﻿body {
-    padding-top: 0px;
-    padding-bottom: 0px;
-    min-height: 100vh;
-    background: url("https://chelgate.com/app/uploads/2016/10/travel_planning-wallpaper-1920x1080.jpg");
-    background-position: center;
-    background-size: cover;
-    background-repeat:no-repeat;
-    background-attachment:fixed;
-}
-footer {
-text-align: center;
-padding: 10px;
-color: #FFF;
-}
-footer *{
-    margin: 0;
-}
-.Latest {
-    background: linear-gradient(rgba(44, 62, 80, 0.5),rgba(44, 62, 80, 0.5));
-    border: 4px solid #2c3e50;
-    padding: 30px;
-    border-radius: 5px;
-    margin: 10px 0;
-}
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-.img11 {
-    height: 148px;
-}
-.img55 {
-    height: 60%;
-    width: 100%;
-}
+﻿/************************************************************************************************************************************/
+/******************************************       MVC DEFAULTS      *****************************************************************/
+/************************************************************************************************************************************/
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
@@ -46,4 +12,190 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+/************************************************************************************************************************************/
+/******************************************     Defaults STYLING    *****************************************************************/
+/************************************************************************************************************************************/
+*{
+    letter-spacing: 0;
+}
+body {
+    padding: 0;
+    margin:0;
+    min-height: 100vh;
+    background:#F6F5E4;
+    color: #2E2E2E;
+}
+.body-content {
+    min-height: 80vh;
+}
+.icon-identity{
+    font-size: 20px;
+}
+/************************************************************************************************************************************/
+/******************************************      NAVBAR STYLING     *****************************************************************/
+/************************************************************************************************************************************/
+.navbar{
+    height:85px;
+    color:#FFFFFF;
+    background: #2E2E2E;
+    font-size: 15px;
+    box-shadow: 4px 11px 26px #000029;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    margin: 0;
+}
+.navbar a{
+    color: #FFFFFF;
+}
+.nav-item {
+    margin-right: 1rem;
+}
+/************************************************************************************************************************************/
+/******************************************     CAROUSEL STYLING    *****************************************************************/
+/************************************************************************************************************************************/
+.carousel{
+    z-index: -1;
+    top: -4vh;
+}
+.carousel-item{
+    height: 90vh !important;
+}
+.carousel-img{
+    height:70vh;
+}
+.carousel-indicators{ 
+    bottom: 20vh;
+}
+.carousel-caption{
+    position: absolute;
+    right: 15%;
+    bottom: 35px;
+    left:40px;
+    height:15vh;
+    background:#F6F5E4;
+    text-align:left;
+    color: #2E2E2E;
+}
+.carousel-caption h5{   
+   font: Bold 39px/55px Bahnschrift;
+}
+.carousel-caption p{
+    font: 400 29px/41px Bahnschrift;
+}
+.carousel-indicators li{
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+}
+/************************************************************************************************************************************/
+/***********************************    MOST RECENT & SIDE PANELS STYLING  **********************************************************/
+/************************************************************************************************************************************/
+.main-section{
+    padding: 15px;
+}
+.panel-title{ /*Panels title custome Positioning*/
+    font: Bold 40px Bahnschrift;
+    letter-spacing: 0;
+    position:relative;
+    top: 30px;
+    left: 15px;
+}
+.recent-content{
+    padding: 40px 5px;
+    background: white;
+    box-shadow: 7px 3px 25px #000029;
+}
+.Recent-cards{
+    border: 0;
+}
+.card-img {
+    height: 148px;
+}
+.wrapper{
+    //background: #2e2e2e;
+    border-radius: 10px;
+    margin-top:10px;
+    padding: 10px;
+    padding-top: 0px;
+    color: #2e2e2e;
+}
+.wrapper *{
+    color: #2e2e2e;
+}
+.video{
+    width:100%;
+    height:400px;
+}
+.map{
+    width:100%;
+    height:250px;
+}
+
+/************************************************************************************************************************************/
+/*****************************************       FOOTER STYLING     *****************************************************************/
+/************************************************************************************************************************************/
+footer {
+background: #2E2E2E;
+text-align: center;
+padding: 20px;
+color: #FFF;
+}
+footer *{
+    color: #fff;
+    font-size: 20px;
+    text-align:left;
+    margin: 0;
+}
+footer h1{
+    text-align:center;
+    font-size: 50px;
+    text-transform:none;
+    letter-spacing: 0;
+}
+.footer-btn{
+    color: white;
+    margin-right:5px;
+    border: 1px solid white;
+    font: 300 15px Bahnschrift;
+    text-transform:capitalize;
+    display: inline;
+}
+.footer-btn:hover{
+    color:#2E2E2E;
+    background: white;
+}
+.subscribe{
+    display:inline;
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid white;
+    font-family: Bahnschrift;
+    display:inline;
+}
+/************************************************************************************************************************************/
+/*****************************************     FRAGMENTS STYLING    *****************************************************************/
+/************************************************************************************************************************************/
+
+/*Illustration styling for other pages before the implemting the real designs*/
+
+.field-validation-error{
+  color: red !important;
+  font-weight: bold;
+}
+.input-validation-error{
+    border: 2px solid red !important;
+}
+.paging-btn{
+    height:50px;
+    width:150px;
+    text-align: center;
+    font-weight: 400;
+}
+.Latest {
+    background: linear-gradient(rgba(44, 62, 80, 0.5),rgba(44, 62, 80, 0.5));
+    border: 4px solid #2c3e50;
+    padding: 30px;
+    border-radius: 5px;
+    margin: 10px 0;
 }

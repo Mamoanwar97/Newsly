@@ -39,5 +39,11 @@ namespace news.Controllers
 
             return View();
         }
+        public ActionResult Subscribe(Subscriber person)
+        {
+            _context.Subscribers.Add(person);
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

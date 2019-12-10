@@ -23,9 +23,10 @@ namespace news
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-lux.css",
-                      "~/Content/site.css",
+                      "~/Content/Site.css",
                       "~/Content/normalize.css"));
         }
     }
