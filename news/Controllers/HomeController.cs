@@ -48,7 +48,7 @@ namespace news.Controllers
 
             _context.Subscribers.Add(person);
             _context.SaveChanges();
-            return RedirectToAction("Index", "News");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
