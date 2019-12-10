@@ -100,5 +100,18 @@ namespace news.Controllers
             
             return View("NewNews", viewer);
         }
+       
+        public ActionResult RemoveNews(int Id)
+        {
+            var news = _context.Newsletters.SingleOrDefault(n => n.Id == Id);
+           
+            if (news == null)
+                return HttpNotFound();
+
+            _context.Newsletters.Remove(news);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "News");
+        }
     }
 }
