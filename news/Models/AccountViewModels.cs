@@ -65,6 +65,14 @@ namespace news.Models
     public class RegisterViewModel
     {
         [Required]
+        public string Name { get; set; }
+        [Required]
+        public string Username { get; set; }
+        [Required]
+        public string Role { get; set; }
+        public IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole> Roles { get; set; }
+   
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

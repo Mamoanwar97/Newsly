@@ -6,22 +6,27 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+
 using Microsoft.Owin.Security;
 using news.Models;
 
 namespace news.Controllers
 {
+ 
     [Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext _context;
 
         public AccountController()
         {
+            _context = new ApplicationDbContext();
         }
-
+      
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
@@ -139,7 +144,11 @@ namespace news.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            var roles = _context.Roles.ToList();
+            var viewModel = new RegisterViewModel {
+                Roles = roles
+            };
+            return View(viewModel);
         }
 
         //
@@ -151,10 +160,38 @@ namespace news.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser {
+                    UserName = model.Username,
+                    Email = model.Email,
+                    Name = model.Name,
+                    Role = model.Role
+                };
+
                 var result = await UserManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
+                    if (model.Role == "Admin")
+                    {
+                        var rolestore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                        var roleManger = new RoleManager<IdentityRole>(rolestore);
+                        await UserManager.AddToRoleAsync(user.Id, "Admin");
+                    }
+                    else if (model.Role == "Guest")
+                    {
+                        var rolestore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                        var roleManger = new RoleManager<IdentityRole>(rolestore);
+                        await UserManager.AddToRoleAsync(user.Id, "Guest");
+                    }
+                    else
+                    {
+                        var rolestore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                        var roleManger = new RoleManager<IdentityRole>(rolestore);
+                        await roleManger.CreateAsync(new IdentityRole("Guest"));
+                        await UserManager.AddToRoleAsync(user.Id, "Guest");
+                    }
+                    
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -405,6 +442,7 @@ namespace news.Controllers
 
         protected override void Dispose(bool disposing)
         {
+            _context.Dispose();
             if (disposing)
             {
                 if (_userManager != null)

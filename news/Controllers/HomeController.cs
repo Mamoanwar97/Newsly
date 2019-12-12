@@ -20,22 +20,25 @@ namespace news.Controllers
         {
             _context.Dispose();
         }
+        [Authorize(Roles = "Admin")]
+
         public ActionResult Index()
         {
+            ViewBag.Message = "Home";
             var newsletters = _context.Newsletters.ToList();
             return View(newsletters);
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "About us";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Contact us";
 
             return View();
         }
