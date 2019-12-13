@@ -1,0 +1,71 @@
+﻿@model newsly.Models.AdminsPanel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+
+    <h2>Admins Panel</h2>
+    @Html.ActionLink("Add Admin", "Register", "Account", null, new { @class = "btn btn-primary m-10" })
+    <div class="btn-toolbar d-flex justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2 admins" role="group" aria-label="First group">
+            <!--Page buttons next disappears when it reaches the last page, previous disappers in the first page-->
+            @if ((Model.Current > 0) && (Model.Current < ((Model.Panel.Count() + 2) / 3)))
+            {
+                @Html.ActionLink("Pervious", "Index", "Admins", new { page = Model.Current - 1 }, new { @class = "btn btn-primary paging-btn", style = "margin: 0 3px;" })
+            }
+            else
+            {
+                @Html.ActionLink("Pervious", "Index", "Admins", new { page = Model.Current }, new { @class = "btn btn-primary paging-btn", style = "margin: 0 3px; visibility: hidden;" })
+            }
+            <label class="btn btn-primary paging-btn">@(Model.Current + 1)</label>
+            @if ((Model.Current >= 0) && (Model.Current < ((Model.Panel.Count() + 2) / 3) - 1))
+            {
+                @Html.ActionLink("Next", "Index", "Admins", new { page = Model.Current + 1 }, new { @class = "btn btn-primary paging-btn", style = "margin: 0 3px;" })
+            }
+            else
+            {
+                @Html.ActionLink("Next", "Index", "Admins", new { page = Model.Current }, new { @class = "btn btn-primary paging-btn", style = "margin: 0 3px; visibility: hidden;" })
+            }
+        </div>
+    </div>
+
+    @if (!Model.Panel.Any())
+    {
+        <p>We don't have any Admins yet.</p>
+    }
+    else
+    {
+        <table class="table table-dark table-bordered table-responsive-lg table-hover text-center">
+            <thead>
+                <tr>
+                    <th>Admins</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var Admin in Model.Panel.Skip(3 * Model.Current).Take(3))
+                {
+                    <tr>
+                        <td >
+                            <div class="btn btn-info paging-btn">
+                                @Admin.Name
+                            </div>
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", "Account", new { Id = Admin.Id }, new { @class = "btn btn-warning paging-btn" })
+                        </td>
+                        <td>
+                            @Html.ActionLink("Delete", "Delete", "Account", new { Id = Admin.Id }, new { @class = "btn btn-danger paging-btn" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+</div>
+
+
+

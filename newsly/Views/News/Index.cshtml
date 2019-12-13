@@ -1,0 +1,86 @@
+﻿@model newsly.Models.NewsPanel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <h2>News</h2>
+    @if (User.IsInRole("Admin"))
+            {
+        @Html.ActionLink("Add News", "Modify", "News", null, new { @class = "btn btn-primary paging-btn" })
+    }
+
+    <div class="btn-toolbar d-flex justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+               
+                <!--Page buttons next disappears when it reaches the last page, previous disappers in the first page-->
+                @if ((Model.Current > 0) && (Model.Current < ((Model.News.Count() + 3) / 4)))
+            {
+                    @Html.ActionLink("Pervious", "Index", "News", new { page = Model.Current - 1 }, new { @class = "btn btn-secondary paging-btn", style = "margin: 0 3px;" })
+                }
+                else
+                {
+                    @Html.ActionLink("Pervious", "Index", "News", new { page = Model.Current }, new { @class = "btn btn-secondary paging-btn", style = "margin: 0 3px; visibility: hidden;" })
+                }
+                <label class="btn btn-primary paging-btn">@(Model.Current + 1)</label>
+
+                @if ((Model.Current >= 0) && (Model.Current < ((Model.News.Count() + 3) / 4) - 1))
+            {
+                    @Html.ActionLink("Next", "Index", "News", new { page = Model.Current + 1 }, new { @class = "btn btn-secondary paging-btn", style = "margin: 0 3px;" })
+                }
+                else
+                {
+                    @Html.ActionLink("Next", "Index", "News", new { page = Model.Current }, new { @class = "btn btn-secondary paging-btn", style = "margin: 0 3px; visibility: hidden;" })
+                }
+            </div>
+        </div>
+    @if (!Model.News.Any())
+    {
+        <p>We don't have any Articles yet.</p>
+    }
+    else
+    {
+        <div class="d-lg-flex justify-content-between col-lg-12 flex-wrap news-panel">
+            @foreach (var article in Model.News.Reverse().Skip(4 * Model.Current).Take(4))
+            {
+                <div class="card mb-3 col-lg-5 Recent-cards">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src=@article.Img_link class="card-img" alt=@article.Title>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        @Html.ActionLink(article.Title, "Edit", "News", new { id = article.Id }, null)
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink(article.Title, "Details", "News", new { id = article.Id }, null)
+                                    }
+                                </h5>
+                                @if (@article.Author != null)
+                                {
+                                    <p class="card-text text-muted">@article.Author</p>
+                                }
+                                @if (@article.Date != null)
+                                {
+                                    <p class="card-text"><small class="text-muted">@article.Date</small></p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Delete news", "Delete", "News", new { id = article.Id }, new { @class = "btn btn-danger" })
+
+                    }
+                </div>
+
+            }
+        </div>
+
+    }
+</div>

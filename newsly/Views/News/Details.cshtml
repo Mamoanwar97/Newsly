@@ -1,0 +1,20 @@
+﻿@model newsly.Models.Newsletter
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+
+    <h2>@Model.Title</h2>
+    <h5>
+        @Model.Author
+    </h5>
+    <h6>
+        @Model.Date
+    </h6>
+    <img src=@Model.Img_link alt=@Model.Title />
+    <p>
+        @Model.Description
+    </p>
+
+</div>
