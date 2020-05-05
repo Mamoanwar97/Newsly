@@ -3,18 +3,24 @@
   
   ## Admins and Guests 
   - Admins : 
-  -- Can add guests, new admins.
-  -- Can view admins table and remove or edit information of other admins, but at least there is one admin in the table.
-  -- Can post new news/events, edit pervious one or delete
+    - Can add guests, new admins.
+    - Can view admins table and remove or edit information of other admins, but at least there is one admin in the table.
+    - Can post new news/events, edit pervious one or delete
   - Guests :
-  -- they dont have access to any add/edit/delete feature.
-  -- they can click on any news/event to show more details.
+    - They dont have access to any add/edit/delete feature.
+    - They can click on any news/event to show more details.
   
   ## Tabs
   
-  -Home tab: where there is coursal at the tob then by going down we find the last 5 featured news show on the left, and on the right some contact information
-  -news tab: where all the news lay, it shows 4 news per page, for guests they can click to show details for admins they can add/edit/delete any news.
-  -events tab: where all the events lay, it shows 4 news per page, for guests they can click to show details for admins they can add/edit/delete any news.
-  -About tab: show information of the company and team worked on it.
-  -contact tab: show information to contact or to subscribe to newsletter or send feedback email.
-  -admins tab : it shows only to admins, so they can add/edit/delete other admins.
+  - Home tab: 
+    There is coursal at the tob then by going down we find the last 5 featured news show on the left, and on the right some contact information
+  - News tab: 
+    Where all the news lay, it shows 4 news per page, for guests they can click to show details for admins they can add/edit/delete any news.
+  - Events tab: 
+    Where all the events lay, it shows 4 news per page, for guests they can click to show details for admins they can add/edit/delete any news.
+  - About tab: 
+    Show information of the company and team worked on it.
+  - Contact tab: 
+    Show information to contact or to subscribe to newsletter or send feedback email.
+  - Admins tab : 
+    It shows only to admins, so they can add/edit/delete other admins.
