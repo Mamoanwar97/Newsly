@@ -1,5 +1,5 @@
 # Newsly
-  This a asp.net mvc web application. it consist of 6 tabs. this a news website where there is admins and guests.
+  This a asp.net mvc web application. it consist of 6 tabs. this a news website where you can login as admin or guest according to your assigned role.
   
   ## Admins and Guests 
   - Admins : 
